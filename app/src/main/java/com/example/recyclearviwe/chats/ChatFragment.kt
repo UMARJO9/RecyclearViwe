@@ -29,7 +29,7 @@ class ChatFragment : Fragment(R.layout.fragment_chats) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
+        // Анамиҷа алиш шидагихай
         recyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         recyclerView.adapter = adapter
         adapter.updateItems(data)
