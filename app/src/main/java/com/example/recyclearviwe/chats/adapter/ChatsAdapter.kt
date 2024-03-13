@@ -1,17 +1,24 @@
 package com.example.recyclearviwe.chats.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.example.recyclearviwe.ChatModel
 import com.example.recyclearviwe.R
-import com.example.recyclearviwe.chats.model.ChatModel
+
+
+
 
 class ChatsAdapter : RecyclerView.Adapter<ChatsAdapter.ViewHolder>() {
 
     private val items = ArrayList<ChatModel>()
 
+    @SuppressLint("notifyDataSetChanged")
     fun updateItems(items: List<ChatModel>) {
         this.items.clear()
         this.items.addAll(items)
@@ -20,13 +27,15 @@ class ChatsAdapter : RecyclerView.Adapter<ChatsAdapter.ViewHolder>() {
 
     class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
 
-        private val titleTextView = itemView.findViewById<TextView>(R.id.titleTextView)
+        private val titleTextView = itemView.findViewById<TextView>(R.id.titleTvChat)
+        private val lastMessageTextView = itemView.findViewById<TextView>(R.id.lastMessageChat)
+        private val avatarImageView = itemView.findViewById<ImageView>(R.id.imageViewChat)
 
         fun bind(item: ChatModel) {
-            titleTextView.text = item.title
-
+            titleTextView.text = item.chatNames
+            lastMessageTextView.text = item.chatLastMessage
+            avatarImageView.setImageDrawable(ContextCompat.getDrawable(itemView.context, item.chatAvatar))
         }
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -36,7 +45,7 @@ class ChatsAdapter : RecyclerView.Adapter<ChatsAdapter.ViewHolder>() {
     }
 
     override fun getItemCount(): Int = items.size
-
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bind(items[position])
-
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.bind(items[position])
+    }
 }

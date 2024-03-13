@@ -1,6 +1,8 @@
-package com.example.recyclearviwe.chats.model
+package com.example.recyclearviwe
 
-data class ChatModel(
-    val title:String,
-    val lastMessage:String
+class ChatModel (
+    val chatNames: String,
+    val chatLastMessage: String,
+    val chatAvatar:Int
+
 )
